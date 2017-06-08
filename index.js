@@ -79,7 +79,7 @@ var mqtt = require('mqtt')
 
 var clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
 
-var host = 'km1.io'
+var host = 'www.km1.io'
 
 var options = {
   keepalive: 10,
