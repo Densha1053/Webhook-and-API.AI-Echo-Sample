@@ -91,7 +91,7 @@ var options = {
   connectTimeout: 30 * 1000,
   will: {
     topic: '/Benz1053/room2',
-    payload: req.body.result.parameters.echoText,
+    payload: speech,
     qos: 0,
     retain: false
   },
