@@ -113,7 +113,7 @@ client.on('connect', function () {
 
 client.subscribe('topic', { qos: 0 })
 
-client.publish('topic', req.body.result.parameters.echoText, { qos: 0, retain: false })
+client.publish('topic', speech, { qos: 0, retain: false })
 
 client.on('message', function (topic, message, packet) {
   console.log('Received Message:= ' + message.toString() + '\nOn topic:= ' + topic)
