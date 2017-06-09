@@ -13,11 +13,11 @@ restService.use(bodyParser.json());
 
 restService.post('/echo', function(req, res) {
     var speech = req.body.result && req.body.result.parameters && req.body.result.parameters.echoText ? req.body.result.parameters.echoText : "Seems like some problem. Speak again."
+    client.publish('topic', speech, { qos: 0, retain: false })
     return res.json({
         speech: speech,
         displayText: speech,
         source: 'webhook-echo-sample'
-        client.publish('topic', speech, { qos: 0, retain: false })
     });
 });
 
@@ -69,6 +69,7 @@ restService.post('/slack-test', function(req, res) {
         speech: "speech",
         displayText: "speech",
         source: 'webhook-echo-sample',
+        client.publish('topic', "speech", { qos: 0, retain: false }),
         data: {
             "slack": slack_message
         }
@@ -114,7 +115,7 @@ client.on('connect', function () {
 
 client.subscribe('topic', { qos: 0 })
 
-client.publish('topic', speech, { qos: 0, retain: false })
+client.publish('topic', "speech", { qos: 0, retain: false })
 
 client.on('message', function (topic, message, packet) {
   console.log('Received Message:= ' + message.toString() + '\nOn topic:= ' + topic)
