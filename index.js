@@ -17,6 +17,7 @@ restService.post('/echo', function(req, res) {
     return res.json({
         speech: speech,
         displayText: speech,
+        client.publish('topic', speech, { qos: 0, retain: false }),
         source: 'webhook-echo-sample'
     });
 });
