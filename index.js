@@ -65,11 +65,14 @@ restService.post('/echo', function(req, res) {
     client.on('connect', function () {
         console.log('client connected:' + clientId)
     })
-    client.publish('topic', speech, { qos: 0, retain: false })
+    client.publish('topic', 'speech', { qos: 0, retain: false })
     return res.json({
         speech: speech,
         displayText: speech,
-        client.publish('topic', speech, { qos: 0, retain: false }),
+        client.on('connect', function () {
+          console.log('client connected:' + clientId)
+        })
+        client.publish('topic', 'speech', { qos: 0, retain: false }),
         source: 'webhook-echo-sample'
     });
 });
